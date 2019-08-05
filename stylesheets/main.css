@@ -1,0 +1,49 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+.mobileNav{
+	display: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+nav{
+	text-align: center;
+}
+
+nav ul li{
+	display: inline-block;
+	text-align: center;
+	padding: 0 20px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.title{
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 64px;
+}
+
+@media only screen and (max-width: 640px){
+	nav{
+		display: none;
+	}
+
+	.mobileNav{
+		border: none;
+		display: block;
+		width: 100px;
+		font-size: 25px;
+		margin: 0 auto;
+		font-family: 'Quicksand', sans-serif;
+	}
+}
+
+@media only screen and (max-width: 1024px){
+
+}
+
