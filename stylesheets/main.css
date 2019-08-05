@@ -3,12 +3,20 @@ margin: 0;
 padding: 0;
 }
 
-.mobileNav{
-	display: none;
+p{
+	font-family: 'Quicksand', sans-serif;
 }
 
 a{
 	text-decoration: none;
+}
+
+h1{
+	font-family: 'Oswald', sans-serif;
+}
+
+.mobileNav{
+	display: none;
 }
 
 nav{
@@ -22,10 +30,23 @@ nav ul li{
 	font-family: 'Quicksand', sans-serif;
 }
 
-.title{
+header h1{
 	text-align: center;
-	font-family: 'Oswald', sans-serif;
 	font-size: 64px;
+}
+
+.container{
+	text-align: center;
+}
+
+#post p{
+	margin: 0 auto;
+	text-align: justify;
+	width: 60%;
+}
+
+#post h1{
+	font-size: 25px;
 }
 
 @media only screen and (max-width: 640px){
@@ -36,7 +57,7 @@ nav ul li{
 	.mobileNav{
 		border: none;
 		display: block;
-		width: 100px;
+		width: 155px;
 		font-size: 25px;
 		margin: 0 auto;
 		font-family: 'Quicksand', sans-serif;
