@@ -1,6 +1,7 @@
 * {
 margin: 0;
 padding: 0;
+font-size: 20px;
 }
 
 p{
@@ -26,13 +27,14 @@ nav{
 nav ul li{
 	display: inline-block;
 	text-align: center;
-	padding: 0 20px;
+	padding: 0 25px;
 	font-family: 'Quicksand', sans-serif;
+	
 }
 
 header h1{
 	text-align: center;
-	font-size: 64px;
+	font-size: 80px;
 }
 
 .container{
@@ -46,7 +48,7 @@ header h1{
 }
 
 #post h1{
-	font-size: 25px;
+	font-size: 31.25px;
 }
 
 @media only screen and (max-width: 640px){
@@ -58,7 +60,7 @@ header h1{
 		border: none;
 		display: block;
 		width: 155px;
-		font-size: 25px;
+		font-size: 35px;
 		margin: 0 auto;
 		font-family: 'Quicksand', sans-serif;
 	}
