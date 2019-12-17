@@ -1,11 +1,14 @@
 * {
-margin: 0;
+margin-top: 40px;
+margin-right: auto;
+margin-bottom: 40px;
+margin-left: auto;
 padding: 0;
-font-size: 20px;
+font-size: 18px;
 }
 
 p{
-	font-family: 'Quicksand', sans-serif;
+	/*font-family: 'Quicksand', sans-serif;*/
 }
 
 a{
