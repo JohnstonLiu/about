@@ -1,3 +1,4 @@
 #nothing
 -----
-i'll add something here when the time calls for it
+I'll something of substance here when the time calls for it. Otherwise, just enjoy my website.
+https://johnstonliu.github.io/about/
