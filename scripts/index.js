@@ -130,6 +130,9 @@ const backspace = function backSpaceKeyEvent(e) {
     );
 };
 
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+}
 document.addEventListener("keydown", backspace);
 document.addEventListener("keypress", key);
 app();
