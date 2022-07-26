@@ -2,9 +2,14 @@ body {
   margin:40px auto;
   max-width:650px;
   line-height:1.6;
+  font-family: "Computer Modern Sans", sans-serif;
   font-size:18px;
   color:#444;
   padding:0 10px;
+}
+
+a {
+  color:darkgreen;
 }
 
 h1,h2,h3{
