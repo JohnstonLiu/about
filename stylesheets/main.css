@@ -71,16 +71,39 @@
   }
 }
 
+.home {
+  margin: auto;
+  max-width: 850px;
+  line-height: 1.6;
+}
+
+p {
+    margin: 20px auto;
+}
+
+
 .about {
-  margin:40px auto;
-  max-width:650px;
-  line-height:1.6;
+    font-size: 20px;
+}
+
+.footer {
+    padding: 35em 2em 2em;
+    text-align: center;
 }
 
 a {
-  /*lightmode 
-  color:darkgreen;
-  */
-  color: lightblue;
+    /*lightmode 
+    color:darkgreen;
+    */
+    color: ghostwhite;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    box-shadow: inset 0 0 0 0 ghostwhite;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+a:hover {
+    box-shadow: inset 100px 0 0 0 ghostwhite;
+    color: black; 
 }
 
