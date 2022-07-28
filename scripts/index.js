@@ -1,6 +1,7 @@
 let userInput, terminalOutput;
 const baseTime=80;
-var canType=false;
+let canType=false;
+let skipped=false;
 
 const app = () => {
     window.userInput = document.getElementById("userInput");
@@ -8,6 +9,17 @@ const app = () => {
     document.getElementById("dummyKeyboard").focus();
     const GREETING=`Hello. What's your name?`;
     greetingMsg(GREETING, baseTime);
+};
+
+window.onscroll = function () {
+    skipped=true;
+}
+
+const presetNames = {
+    johnston:
+        'Nice try buddy.',
+    "your mom":
+        'No.'
 };
 
 const execute = function executeCommand(input) {
@@ -22,8 +34,15 @@ const execute = function executeCommand(input) {
 
 
     if (!COMMANDS.hasOwnProperty(input)) {
-        const GREETING=getGreeting();
-        const NAME=`${originalInput}.`;
+        let GREETING;
+        let NAME;
+        if(presetNames.hasOwnProperty(input)) {
+            GREETING="";
+            NAME=presetNames[input];
+        } else {
+            GREETING=getGreeting();
+            NAME=`${originalInput}.`;
+        }
         
         let greeting="";
         let name="";
@@ -65,7 +84,6 @@ function greetingMsg(GREETING, baseTime) {
                 setTimeout(function() {
                     document.getElementById('userInput').classList.toggle('user-input');
                 }, 250)
-                //enable blinking cursor
             }
         }, time);
     });
@@ -133,13 +151,7 @@ const backspace = function backSpaceKeyEvent(e) {
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 }
+
 document.addEventListener("keydown", backspace);
 document.addEventListener("keypress", key);
 app();
-
-const COMMANDS = {
-    "your mom":
-        'No.'
-};
-
-
