@@ -17,6 +17,7 @@ window.onscroll = function () {
     if(skipped==true)return;
     skipped=true;
     typingoff();
+    document.getElementById('userInput').innerHTML="";
 
     const TEXT="Leaving so soon?";
     let text="";
