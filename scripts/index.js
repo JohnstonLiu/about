@@ -13,10 +13,10 @@ const app = () => {
 };
 
 window.onscroll = function () {
+    assistScroll=false;
     if(skipped==true)return;
     skipped=true;
     typingoff();
-    assistScroll=false;
 
     const TEXT="Leaving so soon?";
     let text="";
