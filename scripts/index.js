@@ -2,6 +2,7 @@ let userInput, terminalOutput;
 const baseTime=80;
 let canType=false;
 let skipped=false;
+let assistScroll=true;
 
 const app = () => {
     window.userInput = document.getElementById("userInput");
@@ -12,7 +13,20 @@ const app = () => {
 };
 
 window.onscroll = function () {
+    if(skipped==true)return;
     skipped=true;
+    typingoff();
+    assistScroll=false;
+
+    const TEXT="Leaving so soon?";
+    let text="";
+    Array.from(TEXT).forEach(function(char, index) {
+        let time=index*baseTime;
+        setTimeout(function() {
+            text+=char;
+            terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${text}</div></div>`;
+        }, time);
+    });
 }
 
 const presetNames = {
@@ -22,6 +36,11 @@ const presetNames = {
         'No.'
 };
 
+function typingoff() {
+    canType=false;
+    document.getElementById('userInput').classList.remove('user-input');
+}
+
 const execute = function executeCommand(input) {
     originalInput = input;
     input = input.toLowerCase();
@@ -29,46 +48,43 @@ const execute = function executeCommand(input) {
     if (input.length === 0) {
         return;
     }
-    document.getElementById('userInput').classList.remove('user-input');
-    canType=false;
+    typingoff();
+    skipped=true;
 
-
-    if (!COMMANDS.hasOwnProperty(input)) {
-        let GREETING;
-        let NAME;
-        if(presetNames.hasOwnProperty(input)) {
-            GREETING="";
-            NAME=presetNames[input];
-        } else {
-            GREETING=getGreeting();
-            NAME=`${originalInput}.`;
-        }
-        
-        let greeting="";
-        let name="";
-        Array.from(GREETING).forEach(function(char, index) {
-            let time=index*baseTime;
-            setTimeout(function() {
-                greeting+=char;
-                terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${greeting}<span class="output">${name}</span></div></div>`;
-            }, time);
-        });
-
-        let correctionIndex=GREETING.length;
-        Array.from(NAME).forEach(function(char, index) {
-            let time=(index+correctionIndex)*baseTime;
-            setTimeout(function() {
-                name+=char;
-                terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${greeting}<span class="output">${name}</span></div></div>`;
-                if (time==(NAME.length-1+correctionIndex)*baseTime) {
-                    setTimeout(function() {
-                        //document.getElementById('userInput').classList.toggle('user-input');
-                        document.getElementById('nextPage').scrollIntoView({behavior: 'smooth'});
-                    }, 250)
-                }
-            }, time);
-        });
+    let GREETING;
+    let NAME;
+    if(presetNames.hasOwnProperty(input)) {
+        GREETING="";
+        NAME=presetNames[input];
+    } else {
+        GREETING=getGreeting();
+        NAME=`${originalInput}.`;
     }
+    
+    let greeting="";
+    let name="";
+    Array.from(GREETING).forEach(function(char, index) {
+        let time=index*baseTime;
+        setTimeout(function() {
+            greeting+=char;
+            terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${greeting}<span class="output">${name}</span></div></div>`;
+        }, time);
+    });
+
+    let correctionIndex=GREETING.length;
+    Array.from(NAME).forEach(function(char, index) {
+        let time=(index+correctionIndex)*baseTime;
+        setTimeout(function() {
+            name+=char;
+            terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${greeting}<span class="output">${name}</span></div></div>`;
+            if (time==(NAME.length-1+correctionIndex)*baseTime && assistScroll) {
+                setTimeout(function() {
+                    //document.getElementById('userInput').classList.toggle('user-input');
+                    document.getElementById('nextPage').scrollIntoView({behavior: 'smooth'});
+                }, 250)
+            }
+        }, time);
+    });
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
 };
 
@@ -77,6 +93,7 @@ function greetingMsg(GREETING, baseTime) {
     Array.from(GREETING).forEach(function(char, index) {
         let time=index*baseTime;
         setTimeout(function() {
+            if(skipped==true)return;
             greeting+=char;
             terminalOutput.innerHTML = `<div class="terminal-line"><div class="terminal-line">${greeting}</div></div>`;
             if (time==(GREETING.length-1)*baseTime) {
