@@ -43,7 +43,7 @@ function typingoff() {
 }
 
 const execute = function executeCommand(input) {
-    originalInput = input;
+    let originalInput = input;
     input = input.toLowerCase();
 
     if (input.length === 0) {
