@@ -54,11 +54,18 @@
         visibility: hidden;
     }
 
+    .about {
+        font-size: 15px;
+    }
 }
 
 @media (min-width:1282px) {
     .terminal-line {
         position: relative;
+    }
+
+    .about {
+        font-size: 20px;
     }
 }
 
@@ -114,9 +121,6 @@ p {
 }
 
 
-.about {
-    font-size: 20px;
-}
 
 .footer {
     padding: 35em 2em 2em;

@@ -8,7 +8,7 @@ const app = () => {
     window.userInput = document.getElementById("userInput");
     terminalOutput = document.getElementById("terminalOutput");
     document.getElementById("dummyKeyboard").focus();
-    const GREETING=`Hello. What's your name?`;
+    const GREETING=`Hello. What is your name?`;
     greetingMsg(GREETING, baseTime);
 };
 
