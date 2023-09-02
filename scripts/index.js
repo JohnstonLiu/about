@@ -168,7 +168,25 @@ const backspace = function backSpaceKeyEvent(e) {
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
+    removeDivOnMobile();
 }
+// Function to remove the div if the screen width is less than 1282px
+function removeDivOnSmallScreens() {
+    var divToRemove = document.getElementById('welcome');
+    var text= document.getElementById('nextPage');
+    if (divToRemove && window.innerWidth < 1282) {
+        divToRemove.style.display = 'none';
+        text.style.marginTop = '200px';
+    } else {
+        divToRemove.style.display = 'flex';
+        text.style.marginTop = 'auto';
+    }
+}
+
+// Call the function when the page loads and on window resize
+window.onload = removeDivOnSmallScreens;
+window.addEventListener('resize', removeDivOnSmallScreens);
+
 
 document.addEventListener("keydown", backspace);
 document.addEventListener("keypress", key);
