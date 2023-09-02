@@ -172,9 +172,12 @@ window.onbeforeunload = function () {
 }
 // Function to remove the div if the screen width is less than 1282px
 function removeDivOnSmallScreens() {
+    function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
     var divToRemove = document.getElementById('welcome');
     var text= document.getElementById('nextPage');
-    if (divToRemove && window.innerWidth < 1282) {
+    if (divToRemove && window.innerWidth < 1282 || isMobileDevice()) {
         divToRemove.style.display = 'none';
         text.style.marginTop = '200px';
     } else {
