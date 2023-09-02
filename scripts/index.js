@@ -179,7 +179,7 @@ function removeDivOnSmallScreens() {
     var text= document.getElementById('nextPage');
     if (divToRemove && window.innerWidth < 1282 || isMobileDevice()) {
         divToRemove.style.display = 'none';
-        text.style.marginTop = '200px';
+//        text.style.marginTop = '200px';
     } else {
         divToRemove.style.display = 'flex';
         text.style.marginTop = 'auto';
