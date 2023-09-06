@@ -33,8 +33,6 @@ window.onscroll = function () {
 const presetNames = {
     johnston:
         'Nice try buddy.',
-    "your mom":
-        'No.'
 };
 
 function typingoff() {
