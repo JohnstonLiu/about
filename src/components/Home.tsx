@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
               </a>
               <a
-                href="https://www.blog.johnstonliu.me" 
+                href="https://blog.johnstonliu.me" 
                 className="text-blue-400 hover:text-blue-300 relative group inline-flex items-center gap-2"
               >
                 <FontAwesomeIcon icon={faBook} className="text-lg" />
