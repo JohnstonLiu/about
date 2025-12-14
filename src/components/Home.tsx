@@ -40,13 +40,17 @@ const Home: React.FC = () => {
           <div className="space-y-4 sm:space-y-6">
             <p className="text-base sm:text-lg leading-relaxed">
               Hi! This is the <span className="line-through">wonderfully designed</span> website of Johnston Liu. 
-              I'm from Vancouver, Canada, and I'm a junior at the University of Chicago pursuing a double major 
+              I'm from Vancouver, Canada, and I'm a senior at the University of Chicago pursuing a double major 
               in Mathematics and Computer Science.
             </p>
             
             <p className="text-base sm:text-lg leading-relaxed">
-              This past summer, I was based in NYC as an intern at CMS Holdings performing research into trading 
-              strategies and building research infrastructure with Python's Pandas/NumPy library. The summer prior, 
+              I'm an incoming software engineer at Suno, starting sometime in Q2 2026 (TBD).
+              This past summer, I was based in the Bay Area as an intern at Pure Storage working on the FlashBlade kernel team
+              spending most of my time getting kernel modules and hardware devices to work. I also built
+              an <a href="https://github.com/JohnstonLiu/ai-agent" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
+              The summer prior, I was based in NYC as an intern at CMS Holdings performing research into trading 
+              strategies and building research infrastructure with Python's Pandas/NumPy library. The summer prior to that, 
               I conducted mathematical research on symmetric monoidal preorders and their applications to finite 
               topological spaces. A paper communicating my findings can be found{' '} 
               <a href="/documents/reu_paper.pdf" className="text-blue-400 hover:text-blue-300 underline">
