@@ -50,7 +50,7 @@ const Home: React.FC = () => {
               spending most of my time getting kernel modules and hardware devices to work. I also built
               an <a href="https://github.com/JohnstonLiu/ai-agent" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
               The summer prior, I was based in NYC as an intern at CMS Holdings performing research into trading 
-              strategies and building research infrastructure with Python's Pandas/NumPy library. The summer prior to that, 
+              strategies and building research tools in Python. The summer prior to that, 
               I conducted mathematical research on symmetric monoidal preorders and their applications to finite 
               topological spaces. A paper communicating my findings can be found{' '} 
               <a href="/documents/reu_paper.pdf" className="text-blue-400 hover:text-blue-300 underline">
