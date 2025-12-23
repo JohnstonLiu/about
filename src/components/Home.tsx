@@ -48,7 +48,7 @@ const Home: React.FC = () => {
               I'm an incoming software engineer at Suno, starting sometime in Q2 2026 (TBD).
               This past summer, I was based in the Bay Area as an intern at Pure Storage working on the FlashBlade kernel team
               spending most of my time getting kernel modules and hardware devices to work. I also built
-              an <a href="https://github.com/JohnstonLiu/ai-agent" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
+              an <a href="https://docs.johnstonliu.me/ai-wrappers" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
               The summer prior, I was based in NYC as an intern at CMS Holdings performing research into trading 
               strategies and building research tools in Python. The summer prior to that, 
               I conducted mathematical research on symmetric monoidal preorders and their applications to finite 
@@ -84,11 +84,11 @@ const Home: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
               </a>
               <a
-                href="https://blog.johnstonliu.me" 
+                href="https://docs.johnstonliu.me" 
                 className="text-blue-400 hover:text-blue-300 relative group inline-flex items-center gap-2"
               >
                 <FontAwesomeIcon icon={faBook} className="text-lg" />
-                Blog
+                Docs
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
               </a>
             </div>
