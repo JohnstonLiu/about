@@ -40,13 +40,12 @@ const Home: React.FC = () => {
           <div className="space-y-4 sm:space-y-6">
             <p className="text-base sm:text-lg leading-relaxed">
               Hi! This is the <span className="line-through">wonderfully designed</span> website of Johnston Liu. 
-              I'm from Vancouver, Canada, and I'm a senior at the University of Chicago pursuing a double major 
-              in Mathematics and Computer Science.
+              I'm from Vancouver, Canada, and I'm a software engineer at Suno on the Core Infra team based in Cambridge, MA. 
+              I'm a graduate of the University of Chicago with a double major in Mathematics and Computer Science.
             </p>
             
             <p className="text-base sm:text-lg leading-relaxed">
-              I'm an incoming software engineer at Suno, starting sometime in Q2 2026 (TBD).
-              This past summer, I was based in the Bay Area as an intern at Pure Storage working on the FlashBlade kernel team
+              My 2025 summer, I was based in the Bay Area as an intern at Pure Storage working on the FlashBlade kernel team
               spending most of my time getting kernel modules and hardware devices to work. I also built
               an <a href="https://docs.johnstonliu.me/ai-wrappers" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
               The summer prior, I was based in NYC as an intern at CMS Holdings performing research into trading 
