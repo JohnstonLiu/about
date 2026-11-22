@@ -1,0 +1,14 @@
+{
+  "name": "@johnstonliu/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./SharedHead.astro": "./src/SharedHead.astro",
+    "./integration": "./src/integration.ts",
+    "./robots": "./src/robots.ts"
+  },
+  "peerDependencies": {
+    "astro": "^7.4.12"
+  }
+}

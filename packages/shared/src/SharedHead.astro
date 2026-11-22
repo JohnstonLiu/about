@@ -1,0 +1,21 @@
+---
+import "./fonts.css";
+import regularFontUrl from "../fonts/cmu-sans-400-normal.woff2?url";
+import boldFontUrl from "../fonts/cmu-sans-700-normal.woff2?url";
+
+interface Props {
+  preloadBold?: boolean;
+}
+
+const { preloadBold = false } = Astro.props;
+const preloadedFontUrls = preloadBold
+  ? [regularFontUrl, boldFontUrl]
+  : [regularFontUrl];
+---
+
+{preloadedFontUrls.map((fontUrl) => (
+  <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
+))}
+<link rel="icon" href="/favicon.ico" sizes="256x256" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />

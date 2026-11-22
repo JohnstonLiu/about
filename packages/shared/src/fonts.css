@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Computer Modern Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cmu-sans-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Computer Modern Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/cmu-sans-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Computer Modern Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/cmu-sans-400-italic.woff2") format("woff2");
+}
