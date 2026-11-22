@@ -1,0 +1,20 @@
+---
+import "@/styles/global.css";
+
+import BaseHead from "@/components/BaseHead.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+---
+
+<html lang="en" class="dark">
+  <BaseHead>
+    <slot name="head" />
+  </BaseHead>
+  <body class="min-h-screen bg-black text-gray-100">
+    <div class="pointer-events-none fixed bottom-6 right-6 z-50">
+      <div class="pointer-events-auto">
+        <ThemeToggle />
+      </div>
+    </div>
+    <slot />
+  </body>
+</html>

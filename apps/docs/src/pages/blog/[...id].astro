@@ -1,0 +1,83 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import SeoPost from "@/components/SeoPost.astro";
+
+import { formatDate } from "@/lib/util";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  return blog.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout>
+  <SeoPost slot="head" entry={entry} />
+  <div class="mx-auto max-w-2xl px-4 py-12 text-gray-900 dark:text-gray-100">
+    <a
+      href="/"
+      class="group mb-8 inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+      <span class="relative">
+        Go back
+        <span
+          class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 duration-300 group-hover:w-full dark:bg-white"
+        ></span>
+      </span>
+    </a>
+    <article>
+      <header class="mb-8 border-b border-gray-200 pb-6 dark:border-gray-800">
+        <h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+          {entry.data.title}
+        </h1>
+        {
+          entry.data.image && (
+            <img
+              src={entry.data.image.src}
+              alt={entry.data.imageAlt ?? entry.data.title}
+              class="mb-6 h-auto w-full rounded"
+              loading="lazy"
+            />
+          )
+        }
+        {
+          entry.data.description && (
+            <p class="mb-2 text-xl text-gray-600 dark:text-gray-300">
+              {entry.data.description}
+            </p>
+          )
+        }
+        <time class="text-sm text-gray-500 dark:text-gray-400">
+          {formatDate(entry.data.publicationDate)}
+        </time>
+      </header>
+      <div class="prose max-w-none dark:prose-invert">
+        <Content />
+      </div>
+    </article>
+  </div>
+</BaseLayout>

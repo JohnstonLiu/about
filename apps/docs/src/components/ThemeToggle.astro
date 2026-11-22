@@ -1,0 +1,111 @@
+<button
+  id="theme-toggle-btn"
+  aria-label="Toggle color theme"
+  class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-400 text-gray-700 hover:border-gray-600 dark:border-white/30 dark:text-white dark:hover:border-white/70"
+>
+  <span class="moon-icon">
+    <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+      <path
+        d="M21 14.5A8.5 8.5 0 0 1 9.5 3a8.46 8.46 0 0 0-2 5.5A8.5 8.5 0 0 0 16 17a8.46 8.46 0 0 0 5-1.5z"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+    </svg>
+  </span>
+  <span class="sun-icon">
+    <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5">
+      <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </span>
+</button>
+
+<style>
+  #theme-toggle-btn .sun-icon {
+    display: none;
+  }
+
+  :global(.dark) #theme-toggle-btn .sun-icon {
+    display: block;
+  }
+
+  :global(.dark) #theme-toggle-btn .moon-icon {
+    display: none;
+  }
+</style>
+
+<script data-astro-rerun is:inline>
+  (function () {
+    const storageKey = "currentTheme";
+    const storedTheme = localStorage.getItem(storageKey) ?? "dark";
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const resolvedTheme =
+      storedTheme === "dark" ||
+      (storedTheme === "system" && prefersDark)
+        ? "dark"
+        : "light";
+
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+    document.documentElement.classList.toggle("light", resolvedTheme === "light");
+  })();
+</script>
+
+<script>
+  type Theme = "light" | "dark" | "system";
+  const storageKey = "currentTheme";
+
+  function getCurrentTheme(): Theme {
+    return (localStorage.getItem(storageKey) ?? "dark") as Theme;
+  }
+
+  function resolveTheme(theme: Theme): "light" | "dark" {
+    if (theme === "system") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    return theme;
+  }
+
+  function applyTheme(theme: Theme): void {
+    const resolvedTheme = resolveTheme(theme);
+    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+    document.documentElement.classList.toggle("light", resolvedTheme === "light");
+  }
+
+  function initThemeToggle(): void {
+    const button = document.getElementById("theme-toggle-btn");
+    if (!button) return;
+
+    const currentTheme = getCurrentTheme();
+    applyTheme(currentTheme);
+
+    button.addEventListener("click", () => {
+      const isCurrentlyDark = document.documentElement.classList.contains("dark");
+      const nextTheme = isCurrentlyDark ? "light" : "dark";
+      localStorage.setItem(storageKey, nextTheme);
+      applyTheme(nextTheme);
+    });
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (getCurrentTheme() === "system") {
+          applyTheme("system");
+        }
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", initThemeToggle);
+  document.addEventListener("astro:page-load", initThemeToggle);
+  if (
+    document.readyState === "interactive" ||
+    document.readyState === "complete"
+  ) {
+    initThemeToggle();
+  }
+</script>

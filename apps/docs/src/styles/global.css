@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./typography.css" layer(components);
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+  --font-sans: "Computer Modern Sans", "Times New Roman", serif;
+  --font-mono: "Roboto Mono", "SFMono-Regular", Menlo, monospace;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
+@variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(.system, .system *) {
+      @slot;
+    }
+  }
+}
+
+@theme {
+  --color-bg: var(--color-neutral-50);
+  --color-link: oklch(46.97% 0.2734 267.56);
+  --color-muted-text: var(--color-neutral-700);
+
+  --color-dark-bg: var(--color-neutral-950);
+  --color-dark-link: oklch(73.9% 0.1387 282.47);
+  --color-dark-muted-text: var(--color-neutral-300);
+}
+
+/* ensure .link and typography.css are consistent */
+.link {
+  --prose-link-color: var(--color-link);
+  --prose-link-underline-color: var(--color-link);
+
+  color: var(--prose-link-color);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--prose-link-underline-color);
+  text-decoration-thickness: 1px;
+  & code {
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.dark .link {
+  --prose-link-color: var(--color-dark-link);
+  --prose-link-underline-color: var(--color-dark-link);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #000;
+    color: #f8fafc;
+    min-height: 100vh;
+    font-size: 18px;
+    line-height: 1.9;
+  }
+}
+
+html.dark body {
+  background-color: #000;
+}
+
+html.light body {
+  background-color: #f4f3ef;
+  color: #111015;
+}
+
+.site-shell {
+  background-color: transparent;
+}
+
+.light .site-shell {
+  background-color: #f4f3ef;
+  color: #111015;
+}

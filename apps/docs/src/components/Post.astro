@@ -1,0 +1,22 @@
+---
+import { formatDate } from "@/lib/util";
+
+const { post } = Astro.props;
+---
+
+<article class="group">
+  <a
+    href={`/blog/${post.id}`}
+    class="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-900"
+  >
+    <h2 class="relative text-base font-medium text-gray-900 dark:text-white">
+      {post.data.title}
+      <span
+        class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 group-hover:w-full dark:bg-white"
+      ></span>
+    </h2>
+    <span class="text-xs text-gray-600 dark:text-gray-400">
+      {formatDate(post.data.publicationDate)}
+    </span>
+  </a>
+</article>
