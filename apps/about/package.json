@@ -1,36 +1,23 @@
 {
-  "name": "personal-website",
-  "private": true,
+  "name": "@johnstonliu/about",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.3.1",
-    "@fortawesome/free-brands-svg-icons": "^7.3.1",
-    "@fortawesome/free-solid-svg-icons": "^7.3.1",
-    "@fortawesome/react-fontawesome": "^3.5.0",
+    "@astrojs/sitemap": "^3.7.5",
+    "@johnstonliu/shared": "workspace:*",
     "@tailwindcss/vite": "^4.3.5",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "react-router-dom": "^7.18.5",
+    "astro": "^7.4.12",
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.3.0",
-    "eslint": "^10.15.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.7",
-    "globals": "^17.14.0",
-    "typescript": "~6.0.3",
-    "typescript-eslint": "^8.72.2",
-    "vite": "^8.3.8"
+    "@astrojs/check": "^0.9.12",
+    "typescript": "~6.0.3"
   }
 }

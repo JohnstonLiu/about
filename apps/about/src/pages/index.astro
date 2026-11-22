@@ -1,0 +1,151 @@
+---
+import SharedHead from "@johnstonliu/shared/SharedHead.astro";
+import { SITE } from "../siteConfig";
+import "../styles/global.css";
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const linkClass = "text-blue-400 hover:text-blue-300 underline";
+const bodyClass = "text-base sm:text-lg leading-relaxed";
+
+const contactLinks = [
+  {
+    href: "mailto:johnstonliu2004@gmail.com",
+    label: "Email",
+    iconWidth: 512,
+    iconPath:
+      "M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z",
+  },
+  {
+    href: "https://github.com/JohnstonLiu",
+    label: "GitHub",
+    iconWidth: 512,
+    iconPath:
+      "M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5l0 52C323 491.5 335.5 500 350.5 494 441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5l0-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21z",
+  },
+  {
+    href: "https://www.linkedin.com/in/johnston-liu/",
+    label: "LinkedIn",
+    iconWidth: 448,
+    iconPath:
+      "M416 32L31.9 32C14.3 32 0 46.5 0 64.3L0 447.7C0 465.5 14.3 480 31.9 480L416 480c17.6 0 32-14.5 32-32.3l0-383.4C448 46.5 433.6 32 416 32zM135.4 416l-66.4 0 0-213.8 66.5 0 0 213.8-.1 0zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77zM384.3 416l-66.4 0 0-104c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9l0 105.8-66.4 0 0-213.8 63.7 0 0 29.2 .9 0c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9l0 117.2z",
+  },
+  {
+    href: "https://docs.johnstonliu.me",
+    label: "Docs",
+    iconWidth: 448,
+    iconPath:
+      "M384 512L96 512c-53 0-96-43-96-96L0 96C0 43 43 0 96 0L400 0c26.5 0 48 21.5 48 48l0 288c0 20.9-13.4 38.7-32 45.3l0 66.7c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0zM96 384c-17.7 0-32 14.3-32 32s14.3 32 32 32l256 0 0-64-256 0zm32-232c0 13.3 10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0c-13.3 0-24 10.7-24 24zm24 72c-13.3 0-24 10.7-24 24s10.7 24 24 24l176 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-176 0z",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{SITE.title}</title>
+    <meta name="description" content={SITE.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={SITE.title} />
+    <meta property="og:description" content={SITE.description} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={SITE.title} />
+    <meta name="twitter:description" content={SITE.description} />
+    <SharedHead />
+  </head>
+  <body>
+    <div
+      class="min-h-screen bg-black text-white overflow-x-hidden px-4 py-12 sm:px-8 sm:py-16 font-display flex items-center justify-center"
+    >
+      <main class="max-w-3xl w-full space-y-4 sm:space-y-6">
+        <p class={bodyClass}>
+          Hi! This is the
+          <span class="line-through">wonderfully designed</span>
+          website of Johnston Liu. I'm from Vancouver, Canada, and I'm a machine
+          learning engineer at Suno based in Cambridge, MA. I stare & listen to
+          data, read claude, and make gpus do things. I'm a graduate of the
+          University of Chicago with a double major in Mathematics and Computer
+          Science.
+        </p>
+
+        <p class={bodyClass}>
+          Prior to moving to machine learning, I worked on our infrastructure
+          team. I spent my time on:
+        </p>
+        <ol
+          class={`list-decimal pl-6 space-y-2 marker:text-neutral-400 ${bodyClass}`}
+        >
+          <li>
+            On-call incident triage and Slack engineering agents (credentialless
+            sandbox w/ bash + cli tools, integrated with existing company
+            tooling, harness-outside-sandbox runtime and Durable Object-style
+            SQLite WAL / S3 state).
+          </li>
+          <li>
+            Kubernetes sandbox platform (gVisor isolation, Cilium and Envoy
+            egress controls + credential injection, ~1s cold starts via node
+            image prepulling, warm node buffers, and a node-local CSI git
+            cache).
+          </li>
+          <li>
+            Persistent Cloud Hypervisor microVM devboxes (Tailscale,
+            checkpoint/restore migration, live-swappable VM runner upgrades,
+            memory hot-plug, and live resizing).
+          </li>
+        </ol>
+
+        <p class={bodyClass}>
+          Before all of this, I worked in the Bay Area at Pure Storage on the
+          FlashBlade kernel team getting kernel modules and hardware devices to
+          work. I also built an
+          <a href="https://docs.johnstonliu.me/ai-wrappers" class={linkClass}
+            >AI Agent</a
+          >
+          (maybe at some point i'll write this, but quickly became obsolete).
+          Before that, I was in NYC at CMS Holdings performing research into
+          trading strategies and building research tools in Python. And even
+          before that, I did mathematics research on symmetric monoidal
+          preorders and their applications to finite topological spaces. The
+          relevant paper (archaic at this point) can be found{" "}
+          <a href="/documents/reu_paper.pdf" class={linkClass}>here</a>. If
+          you'd like to contact me, feel free to use any of the links below!
+        </p>
+
+        <nav
+          class="pt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-base sm:gap-x-8 sm:text-lg"
+        >
+          {contactLinks.map(({ href, label, iconWidth, iconPath }) => (
+            <a
+              href={href}
+              class="text-blue-400 hover:text-blue-300 relative group inline-flex items-center gap-2"
+            >
+              <svg
+                class="h-[1em] w-[1.25em] overflow-visible"
+                viewBox={`0 0 ${iconWidth} 512`}
+                fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d={iconPath} />
+              </svg>
+              {label}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300" />
+            </a>
+          ))}
+        </nav>
+
+        <footer
+          class="pt-4 sm:pt-6 text-center text-gray-400 text-sm sm:text-base"
+        >
+          <p>Last Updated 11/21/2026</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
