@@ -1,0 +1,20 @@
+{
+  "name": "johnstonliu",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.5",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:about": "bun --cwd apps/about run dev",
+    "dev:docs": "bun --cwd apps/docs run dev",
+    "build": "bun --filter './apps/*' build",
+    "check": "biome check --error-on-warnings && bun --filter './apps/*' check",
+    "format": "biome check --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.7"
+  }
+}
