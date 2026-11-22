@@ -1,105 +1,66 @@
-import React, { useState, useRef } from 'react';
-import LandingPage from './LandingPage';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
+const linkClass = 'text-blue-400 hover:text-blue-300 underline';
+const bodyClass = 'text-base sm:text-lg leading-relaxed';
+
+const contactLinks = [
+  { href: 'mailto:johnstonliu2004@gmail.com', icon: faEnvelope, label: 'Email' },
+  { href: 'https://github.com/JohnstonLiu', icon: faGithub, label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/johnston-liu/', icon: faLinkedin, label: 'LinkedIn' },
+  { href: 'https://docs.johnstonliu.me', icon: faBook, label: 'Docs' },
+];
+
 const Home: React.FC = () => {
-  const [showMain, setShowMain] = useState(false);
-  const [showLoadingScreen, setShowLoadingScreen] = useState(true);
-  const mainContentRef = useRef<HTMLDivElement>(null);
-
-  const scrollToMain = () => {
-    if (mainContentRef.current) {
-      // Remove loading screen before starting scroll
-      setShowLoadingScreen(false);
-      mainContentRef.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center'
-      });
-    }
-  };
-
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
-      {showLoadingScreen && (
-        <div className="absolute inset-0">
-          <LandingPage onComplete={() => {
-            setShowMain(true);
-            // Wait for the fade out animation to complete before scrolling
-            setTimeout(scrollToMain, 1000);
-          }} />
-        </div>
-      )}
-      
-      <div 
-        ref={mainContentRef}
-        className={`min-h-screen text-white px-4 sm:p-8 font-display flex items-center justify-center transform transition-transform duration-1000 ${showMain ? 'translate-y-0' : 'translate-y-full'}`}
-      >
-        <div className="max-w-3xl mx-auto">
-          <div className="space-y-4 sm:space-y-6">
-            <p className="text-base sm:text-lg leading-relaxed">
-              Hi! This is the <span className="line-through">wonderfully designed</span> website of Johnston Liu. 
-              I'm from Vancouver, Canada, and I'm a software engineer at Suno on the Core Infra team based in Cambridge, MA. 
-              I'm a graduate of the University of Chicago with a double major in Mathematics and Computer Science.
-            </p>
-            
-            <p className="text-base sm:text-lg leading-relaxed">
-              My 2025 summer, I was based in the Bay Area as an intern at Pure Storage working on the FlashBlade kernel team
-              spending most of my time getting kernel modules and hardware devices to work. I also built
-              an <a href="https://docs.johnstonliu.me/ai-wrappers" className="text-blue-400 hover:text-blue-300 underline">AI Agent</a>.
-              The summer prior, I was based in NYC as an intern at CMS Holdings performing research into trading 
-              strategies and building research tools in Python. The summer prior to that, 
-              I conducted mathematical research on symmetric monoidal preorders and their applications to finite 
-              topological spaces. A paper communicating my findings can be found{' '} 
-              <a href="/documents/reu_paper.pdf" className="text-blue-400 hover:text-blue-300 underline">
-                here
-              </a>. If you'd like to contact me, feel free to use any of the links below!
-            </p>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden px-4 py-12 sm:px-8 sm:py-16 font-display flex items-center justify-center">
+      <main className="max-w-3xl w-full space-y-4 sm:space-y-6">
+        <p className={bodyClass}>
+          Hi! This is the <span className="line-through">wonderfully designed</span> website of Johnston Liu.
+          I'm from Vancouver, Canada, and I'm a machine learning engineer at Suno based in Cambridge, MA. I stare & listen to data, read claude, and make gpus do things. I'm a graduate of the University of Chicago with a double major in Mathematics and Computer Science.
+        </p>
 
-            <div className="flex items-center justify-center gap-6 text-base sm:text-lg">
-              <a 
-                href="mailto:johnstonliu2004@gmail.com" 
-                className="text-blue-400 hover:text-blue-300 relative group flex items-center gap-2"
-              >
-                <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
-                Email
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a 
-                href="https://github.com/JohnstonLiu" 
-                className="text-blue-400 hover:text-blue-300 relative group flex items-center gap-2"
-              >
-                <FontAwesomeIcon icon={faGithub} className="text-lg" />
-                GitHub
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/johnston-liu/" 
-                className="text-blue-400 hover:text-blue-300 relative group flex items-center gap-2"
-              >
-                <FontAwesomeIcon icon={faLinkedin} className="text-lg" />
-                LinkedIn
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-              <a
-                href="https://docs.johnstonliu.me" 
-                className="text-blue-400 hover:text-blue-300 relative group inline-flex items-center gap-2"
-              >
-                <FontAwesomeIcon icon={faBook} className="text-lg" />
-                Docs
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            </div>
-          </div>
+        <p className={bodyClass}>
+          Prior to moving to machine learning, I worked on our infrastructure team. I spent my time on:
+        </p>
+        <ol className={`list-decimal pl-6 space-y-2 marker:text-neutral-400 ${bodyClass}`}>
+          <li>On-call incident triage and Slack engineering agents (credentialless sandbox w/ bash + cli tools, integrated with existing company tooling, harness-outside-sandbox runtime and Durable Object-style SQLite WAL / S3 state).</li>
+          <li>Kubernetes sandbox platform (gVisor isolation, Cilium and Envoy egress controls + credential injection, ~1s cold starts via node image prepulling, warm node buffers, and a node-local CSI git cache).</li>
+          <li>Persistent Cloud Hypervisor microVM devboxes (Tailscale, checkpoint/restore migration, live-swappable VM runner upgrades, memory hot-plug, and live resizing).</li>
+        </ol>
 
-          <footer className="mt-8 sm:mt-12 text-center text-gray-400 text-sm sm:text-base">
-            <p>Designed by Johnston Liu © 2025</p>
-          </footer>
-        </div>
-      </div>
+        <p className={bodyClass}>
+          Before all of this, I worked in the Bay Area at Pure Storage on the FlashBlade kernel team getting kernel modules and hardware devices to work. I also built
+          an <a href="https://docs.johnstonliu.me/ai-wrappers" className={linkClass}>AI Agent</a> (maybe at some point i'll write this, but quickly became obsolete).
+          Before that, I was in NYC at CMS Holdings performing research into trading
+          strategies and building research tools in Python. And even before that,
+          I did mathematics research on symmetric monoidal preorders and their applications to finite
+          topological spaces. The relevant paper (archaic at this point) can be found{' '}
+          <a href="/documents/reu_paper.pdf" className={linkClass}>here</a>. If you'd like to contact me, feel free to use any of the links below!
+        </p>
+
+        <nav className="pt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-base sm:gap-x-8 sm:text-lg">
+          {contactLinks.map(({ href, icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              className="text-blue-400 hover:text-blue-300 relative group inline-flex items-center gap-2"
+            >
+              <FontAwesomeIcon icon={icon} />
+              {label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
+          ))}
+        </nav>
+
+        <footer className="pt-4 sm:pt-6 text-center text-gray-400 text-sm sm:text-base">
+          <p>Last Updated 11/21/2026</p>
+        </footer>
+      </main>
     </div>
   );
 };
 
-export default Home; 
+export default Home;
