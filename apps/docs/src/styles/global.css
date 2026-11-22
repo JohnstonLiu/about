@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@import "./fonts.css";
 @import "./typography.css" layer(components);
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   color-scheme: light dark;
@@ -20,17 +19,6 @@
 
 .light {
   color-scheme: light;
-}
-
-@variant dark {
-  &:where(.dark, .dark *) {
-    @slot;
-  }
-  @media (prefers-color-scheme: dark) {
-    &:where(.system, .system *) {
-      @slot;
-    }
-  }
 }
 
 @theme {

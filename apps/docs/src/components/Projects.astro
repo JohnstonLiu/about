@@ -1,5 +1,7 @@
 ---
+import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
+import ProjectLink from "@/components/ProjectLink.astro";
 import { formatDate } from "@/lib/util";
 
 const projects = (await getCollection("projects")).sort(
@@ -91,86 +93,87 @@ const formatProjectDate = (
 ---
 
 <div class="mt-4 space-y-10">
-  {
-    projects.map((project) => {
-      const {
-        title,
-        subtitle,
-        description,
-        descriptionLinks,
-        technologies,
-        href,
-        date,
-        endDate,
-        ongoing,
-        image,
-      } = project.data;
-      const formattedDate = formatProjectDate(date, endDate, ongoing);
-      const descriptionParagraphs = description
-        .trim()
-        .split(/\n\s*\n/)
-        .filter(Boolean);
-      return (
-        <article class="space-y-4" {...{ key: project.id }}>
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-              <a
-                class="hover:underline"
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {title}
-              </a>
-            </h3>
-            <time class="text-sm text-gray-600 dark:text-gray-400">{formattedDate}</time>
-          </div>
-          {technologies.length > 0 && (
-            <ul class="flex flex-wrap gap-2">
-              {technologies.map((tech) => (
-                <li
-                  class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          )}
-          <p class="text-base font-medium text-gray-900 dark:text-white">{subtitle}</p>
-          <div class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-            {descriptionParagraphs.map((paragraph, idx) => {
-              const segments = createDescriptionSegments(paragraph, descriptionLinks);
+  {projects.map((project) => {
+    const {
+      title,
+      subtitle,
+      description,
+      descriptionLinks,
+      technologies,
+      href,
+      date,
+      endDate,
+      ongoing,
+      image,
+    } = project.data;
+    const formattedDate = formatProjectDate(date, endDate, ongoing);
+    const descriptionParagraphs = description
+      .trim()
+      .split(/\n\s*\n/)
+      .filter(Boolean);
+    return (
+      <article class="space-y-4">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <a
+              class="hover:underline"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {title}
+            </a>
+          </h3>
+          <time class="text-sm text-gray-600 dark:text-gray-400">
+            {formattedDate}
+          </time>
+        </div>
+        {technologies.length > 0 && (
+          <ul class="flex flex-wrap gap-2">
+            {technologies.map((tech) => (
+              <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        )}
+        <p class="text-base font-medium text-gray-900 dark:text-white">
+          {subtitle}
+        </p>
+        <div class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+          {descriptionParagraphs.map((paragraph) => {
+            const segments = createDescriptionSegments(
+              paragraph,
+              descriptionLinks,
+            );
 
-              return (
-                <p {...{ key: idx }}>
-                  {segments.map((segment) =>
-                    typeof segment === "string" ? (
-                      segment
-                    ) : (
-                      <a
-                        class="font-medium text-gray-900 underline underline-offset-2 hover:text-gray-600 dark:text-white dark:hover:text-gray-400"
-                        href={segment.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >{segment.text}</a>
-                    ),
-                  )}
-                </p>
-              );
-            })}
+            return (
+              <p>
+                {segments.map((segment) =>
+                  typeof segment === "string" ? (
+                    segment
+                  ) : (
+                    <ProjectLink href={segment.href} text={segment.text} />
+                  ),
+                )}
+              </p>
+            );
+          })}
+        </div>
+        {image && (
+          <div class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
+            <Picture
+              src={image}
+              alt={`${title} preview`}
+              class="h-auto w-full object-contain"
+              formats={["avif"]}
+              fallbackFormat="webp"
+              widths={[640, 1280]}
+              sizes="(min-width: 42rem) 640px, calc(100vw - 2rem)"
+            />
           </div>
-          {image && (
-            <div class="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800">
-              <img
-                src={image.src}
-                alt={`${title} preview`}
-                class="h-auto w-full object-contain"
-                loading="lazy"
-              />
-            </div>
-          )}
-        </article>
-      );
-    })
-  }
+        )}
+      </article>
+    );
+  })}
 </div>

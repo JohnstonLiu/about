@@ -21,5 +21,8 @@ export function formatDate(
   const hasCustomOptions = Object.keys(options).length > 0;
   const formatOptions = hasCustomOptions ? options : defaultOptions;
 
-  return new Intl.DateTimeFormat(locale, formatOptions).format(date);
+  return new Intl.DateTimeFormat(locale, {
+    timeZone: "UTC",
+    ...formatOptions,
+  }).format(date);
 }

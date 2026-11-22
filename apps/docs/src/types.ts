@@ -1,7 +1,7 @@
 export type SiteConfiguration = {
   title: string;
   description: string;
-  href: string;
+  url: string;
   author: string;
   locale: string;
 };

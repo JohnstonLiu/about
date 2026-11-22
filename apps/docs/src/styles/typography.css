@@ -19,7 +19,6 @@
   );
   --prose-blockquote-border-color: var(--color-neutral-300);
 
-  /* Dark mode colors from the first file */
   &:where(.dark, .dark *) {
     --prose-color: var(--color-neutral-300);
     --prose-heading-color: var(--color-white);
@@ -38,31 +37,6 @@
     --prose-blockquote-border-color: var(--color-neutral-600);
   }
 
-  /* System dark mode colors from the first file */
-  @media (prefers-color-scheme: dark) {
-    &:where(.system, .system *) {
-      --prose-color: var(--color-neutral-300);
-      --prose-heading-color: var(--color-white);
-      --prose-strong-color: var(--color-white);
-      --prose-link-color: var(--color-white);
-      --prose-code-color: var(--color-white);
-      --prose-marker-color: color-mix(
-        in oklab,
-        var(--color-neutral-300) 35%,
-        transparent
-      );
-      --prose-link-underline-color: var(--color-blue-400);
-      --prose-th-borders: var(--color-neutral-600);
-      --prose-td-borders: var(--color-neutral-700);
-      --prose-hr-color: color-mix(
-        in oklab,
-        var(--color-white) 10%,
-        transparent
-      );
-      --prose-blockquote-border-color: var(--color-neutral-600);
-    }
-  }
-
   color: var(--prose-color);
   max-width: 65ch;
   font-size: 1rem;
@@ -76,7 +50,6 @@
   :where([class~="lead"]):not(
       :where([class~="not-prose"], [class~="not-prose"] *)
     ) {
-    color: var(--tw-prose-lead);
     font-size: 1.25em;
     line-height: 1.6;
     margin-top: 1.2em;
@@ -182,17 +155,9 @@
       :where([class~="not-prose"], [class~="not-prose"] *)
     )::marker {
     font-weight: 400;
-    color: var(--tw-prose-counters);
-  }
-
-  :where(ul > li):not(
-      :where([class~="not-prose"], [class~="not-prose"] *)
-    )::marker {
-    color: var(--tw-prose-bullets);
   }
 
   :where(dt):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    color: var(--tw-prose-headings);
     font-weight: 600;
     margin-top: 1.25em;
   }
@@ -207,7 +172,6 @@
   :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     font-weight: 500;
     font-style: italic;
-    color: var(--tw-prose-quotes);
     border-inline-start-width: 0.25rem;
     border-inline-start-color: var(--prose-blockquote-border-color);
     quotes: "\201C" "\201D" "\2018" "\2019";
@@ -302,10 +266,6 @@
   :where(kbd):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     font-weight: 500;
     font-family: inherit;
-    color: var(--tw-prose-kbd);
-    box-shadow:
-      0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%),
-      0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
     font-size: 0.875em;
     border-radius: 0.3125rem;
     padding-top: 0.1875em;
@@ -370,8 +330,6 @@
   }
 
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    color: var(--tw-prose-pre-code);
-    background-color: var(--tw-prose-pre-bg);
     overflow-x: auto;
     font-weight: 400;
     font-size: 0.875em;
@@ -466,7 +424,6 @@
   }
 
   :where(figcaption):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-    color: var(--tw-prose-captions);
     font-size: 0.875em;
     line-height: 1.4285714;
     margin-top: 0.8571429em;

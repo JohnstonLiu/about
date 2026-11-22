@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-
 import Projects from "@/components/Projects.astro";
-import SeoPage from "@/components/SeoPage.astro";
+import Seo from "@/components/Seo.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <SeoPage slot="head" title="Projects" />
-  <Projects />
+  <Seo slot="head" title="Projects" />
+  <div class="mx-auto max-w-2xl px-4 py-8 text-gray-900 dark:text-gray-100">
+    <Projects />
+  </div>
 </BaseLayout>

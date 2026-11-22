@@ -1,50 +1,45 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import SeoPage from "@/components/SeoPage.astro";
-import { SITE, SOCIAL_LINKS } from "@/siteConfig.ts";
 import { getCollection } from "astro:content";
-import { formatDate } from "@/lib/util";
 import Projects from "@/components/Projects.astro";
+import Seo from "@/components/Seo.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/lib/util";
+import { SITE, SOCIAL_LINKS } from "@/siteConfig.ts";
 
-const posts = (
-  await getCollection("blog")
-).sort(
-  (a, b) =>
-    b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
 );
 const isExternal = (href: string) => href.startsWith("http");
 ---
 
 <BaseLayout>
-  <SeoPage slot="head" />
+  <Seo slot="head" />
   <div class="mx-auto max-w-2xl px-4 py-8 text-gray-900 dark:text-gray-100">
     <header class="mb-6">
       <div
         class="flex flex-col justify-between gap-4 border-b border-gray-300 py-3 sm:flex-row sm:items-center sm:gap-6 dark:border-gray-800"
       >
-        <h1 class="text-lg font-semibold text-gray-900 dark:text-white sm:text-xl">
+        <h1
+          class="text-lg font-semibold text-gray-900 dark:text-white sm:text-xl"
+        >
           {SITE.title}
         </h1>
         <div class="flex flex-wrap items-center gap-4 sm:gap-6">
-          {
-            Object.keys(SOCIAL_LINKS).map((socialKey) => {
-              const { href, label } = SOCIAL_LINKS[socialKey];
-              const external = isExternal(href);
-              return (
-                <a
-                  class="relative text-sm text-gray-700 hover:text-black group dark:text-gray-400 dark:hover:text-white"
-                  href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
-                >
-                  {label}
-                  <span
-                    class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 duration-300 group-hover:w-full dark:bg-white"
-                  ></span>
-                </a>
-              );
-            })
-          }
+          {Object.keys(SOCIAL_LINKS).map((socialKey) => {
+            const { href, label } = SOCIAL_LINKS[socialKey];
+            const external = isExternal(href);
+            return (
+              <a
+                class="relative text-sm text-gray-700 hover:text-black group dark:text-gray-400 dark:hover:text-white"
+                href={href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+              >
+                {label}
+                <span class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 duration-300 group-hover:w-full dark:bg-white"></span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </header>
@@ -53,45 +48,50 @@ const isExternal = (href: string) => href.startsWith("http");
       Chances are, you found this place through my other{" "}
       <a
         class="text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-400"
-        href={SITE.href}
+        href={SOCIAL_LINKS.personal.href}
         target="_blank"
         rel="noreferrer"
-      >website</a>. If not, then welcome. This is where I document my writing on
-      technical topics primarily in software engineering, and occasionally other
-      things that interest me as well as my past projects. Feel free to reach out with the links above if
-      you'd like to chat.
+        >website</a
+      >. If not, then welcome. This is where I document my writing on technical
+      topics primarily in software engineering, and occasionally other things
+      that interest me as well as my past projects. Feel free to reach out with
+      the links above if you'd like to chat.
     </p>
 
-    <h2 class="mt-10 text-sm uppercase tracking-wide text-gray-600 dark:text-gray-400">
+    <h2
+      class="mt-10 text-sm uppercase tracking-wide text-gray-600 dark:text-gray-400"
+    >
       Writing
     </h2>
     <div class="space-y-2">
       {posts.map((post) => {
-        const postHref = `/blog/${post.id}`;
+        const postHref = `/blog/${post.id}/`;
         const formattedDate = formatDate(post.data.publicationDate, {
           month: "long",
           day: "numeric",
           year: "numeric",
         });
         return (
-          <article class="group" {...{ key: post.id }}>
+          <article class="group">
             <a
               class="flex items-center justify-between rounded-lg py-2 px-3 -mx-3 hover:bg-gray-100 dark:hover:bg-gray-900"
               href={postHref}
             >
               <h2 class="relative text-base font-medium text-gray-900 dark:text-white">
                 {post.data.title}
-                <span
-                  class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 duration-300 group-hover:w-full dark:bg-white"
-                ></span>
+                <span class="absolute bottom-0 left-0 h-px w-0 bg-gray-900 duration-300 group-hover:w-full dark:bg-white"></span>
               </h2>
-              <span class="text-xs text-gray-600 dark:text-gray-400">{formattedDate}</span>
+              <span class="text-xs text-gray-600 dark:text-gray-400">
+                {formattedDate}
+              </span>
             </a>
           </article>
         );
       })}
     </div>
-    <h2 class="mt-12 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">
+    <h2
+      class="mt-12 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400"
+    >
       Projects (some aren't deployed anymore)
     </h2>
     <Projects />

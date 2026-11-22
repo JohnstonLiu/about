@@ -3,7 +3,7 @@ import type { SiteConfiguration, SocialLinks } from "@/types.ts";
 export const SITE: SiteConfiguration = {
   title: "johnston's docs",
   description: "Technical docs by Johnston Liu",
-  href: "https://johnstonliu.me",
+  url: "https://docs.johnstonliu.me",
   author: "Johnston Liu",
   locale: "en-US",
 };

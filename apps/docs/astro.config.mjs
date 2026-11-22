@@ -1,16 +1,18 @@
-import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import sharedAssets from "@johnstonliu/shared/integration";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import { SITE } from "./src/siteConfig.ts";
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [sitemap()],
+  site: SITE.url,
+  compressHTML: true,
+  integrations: [sitemap(), sharedAssets({ name: SITE.title })],
   markdown: {
     shikiConfig: {
       theme: "kanagawa-wave",
     },
   },
-  site: "https://docs.johnstonliu.me",
   vite: {
     plugins: [tailwindcss()],
   },
